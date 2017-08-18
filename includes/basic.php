@@ -94,26 +94,43 @@ add_action( 'admin_bar_menu', 'wppp_add_plugin_link_to_admin_bar_menu', '80' ); 
 
 
 
-/* Creates a new post type 'wppp_project' (Projects) */
+/*  Creates a new post type 'wppp_project' (Projects) 
+    For more details, refer to: https://codex.wordpress.org/Function_Reference/register_post_type
+ */
 function wppp_project_custom_post_type() {
     register_post_type('wppp_project',
                        [
-                           'labels' => [
-                               'name'          => __('Projects'),
-                               'singular_name' => __('Projects'),
+                           'labels'                 => [
+                               'name'               => __('Projects', 'Post Type General Name', 'gourmet-artist'),
+                               'singular_name'      => __('Project', 'Post Type Singular Name', 'gourmet-artist'),
+                               'menu_name'          => __('Projects', 'gourmet-artist'),
+                               'all_items'          => __('All Projects', 'gourmet-artist'),
+                               'view_items'          => __('View projects', 'gourmet-artist'),
+                               'add_new_item'       => __('Add New Project', 'gourmet-artist'),
+                               'add_new'            => __('Add New Project', 'gourmet-artist'),
+                               'edit_item'          => __('Edit Project', 'gourmet-artist'),
+                               'update_item'        => __('Update Project', 'gourmet-artist'),
+                               'search_items'       => __('Search Projects', 'gourmet-artist'),
+                               'not_found'          => __('No projects found.', 'gourmet-artist'),
+                               'not_found_in_trash' => __('No projects found in trash.', 'gourmet-artist'),
                            ],
-                           'public'      => true,
-                        //    'supports' => array( 'title', 'editor', 'excerpt', 'custom-fields', 'thumbnail','page-attributes' ),
-                           'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ),
-                           'has_archive' => true,
-                           'exclude_from_search' => false,
-                           'rewrite'     => ['slug' => 'projects'], // my custom slug
-                            
+                           'public'                 => true,
+                        //    'supports'            => array( 'title', 'editor', 'excerpt', 'custom-fields', 'thumbnail','page-attributes' ),
+                           'supports'               => array( 'title', 'editor', 'author', 'thumbnail' ),
+                           'has_archive'            => true,
+                           'exclude_from_search'    => false,
+                           'rewrite'                => ['slug' => 'projects'], //my custom slug
+                           'show_ui'                => true,
+                           'show_in_menu'           => true,
+                           'show_in_admin_bar'      => true, 
+                           'menu_position'          => 5, //menu order; show_in_menu must be true; 5 means below Posts
+                           'menu_icon'              => 'dashicons-smiley', //uses an icon from Dashicons
+                           'can_export'             => true,
                        ]
     );
-    
 }
 add_action('init', 'wppp_project_custom_post_type');
+
 
 
 /* Creates Taxonomy for Project Categories */
