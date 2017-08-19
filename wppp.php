@@ -4,7 +4,7 @@
  * Plugin URI: http://almawhoob.net
  * Author: Ahmed Al Abdulmohsen
  * Author URI: http://almawhoob.net
- * Version: 0.0.5
+ * Version: 0.0.6
  * Description: WPPP is a WordPress Project Plugin.
 */
 
@@ -19,4 +19,8 @@ define('WPPP_SLUG', plugin_basename( __FILE__ )); //for updates
 
 // INCLUDES
 include_once('includes/basic.php');
+include_once('includes/wppp_dashboard_widgets.php');
+include_once('includes/wppp_custom_post_type.php');
+include_once('includes/wppp_taxonomies.php');
+
 
